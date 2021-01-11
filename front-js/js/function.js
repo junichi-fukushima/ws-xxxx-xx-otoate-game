@@ -37,24 +37,29 @@ const elements = {
   }
 }
 
+// 勝負数
 const incrementCount = () => {
   context.count++
 }
 
+// スコア
 const updateScore = () => {
   elements.scoreText.innerText = context.score
 }
 
+// 正解の数
 const updateAnswerCount = () => {
   elements.answerCount.innerText = Math.min(context.count, PROBLEM_COUNT)
 }
 
+// プレイヤー名を変える
 const updatePlayerName = () => {
   elements.playerName.innerText = context.name
 }
 
+// 最終スコア
 const updateFinalScore = () => {
-  elements.finalScore = context.score
+  elements.finalScore.innerText = context.score
 }
 
 const updateScoreList = (data, currentScore) => {
