@@ -1,21 +1,21 @@
 const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-// routesディレクトリを使用して表示したいがエラーが出る
-// const scoreRouter = require('./routes/Score'); 
-// app.use('/', scoreRouter);
-// app.use('/score', scoreRouter);
+const app = express()
+const { Score } = require('./models')
 
-// 使用する静的コンテンツの取得
-app.use(express.static('../front-js'))
 
-// ルーティングの設定
-app.get('/', function (req, res) {
-    res.sendFile('..//front-js/index.html');
-})
+const port = 3000
 
-const port = 3000;
+
+const scorePath = '/scores'
+
+// CORS許可
+app.use(function(_req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const options = {
 	useUnifiedTopology : true,
@@ -31,3 +31,8 @@ db.once('open', () => console.log('Database connection successful'));
 
 app.listen(port, 
 	() => console.log(`Example app listening on port ${port}!`));
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
